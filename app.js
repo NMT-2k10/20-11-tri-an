@@ -2,7 +2,7 @@
   'use strict';
   const $ = selector => document.querySelector(selector);
   const config = window.GIFT_CONFIG, effects = window.GiftEffects;
-  const scenes = ['welcome', 'classroom', 'flower', 'memories', 'gift', 'galaxy'];
+  const scenes = ['welcome', 'classroom', 'flower', 'memories', 'gift'];
   let current = 'welcome', history = [], currentPhoto = 0, transitionTimer, toastTimer, resizeTimer;
   let filmFrame = 0, previousFrame = 0, filmDrag = null, suppressFilmClick = false, resumeAfter = 0, filmPosition = 0;
   const photos = config.photos.length ? config.photos : [{ src:'assets/images/start-logo.png', caption:'Gửi ngàn lời tri ân', alt:'Ngày Nhà giáo Việt Nam' }];
@@ -69,11 +69,7 @@
     if(name==='letter') name='flower';
     if(!scenes.includes(name)||name===current) return;
     clearTimeout(transitionTimer); stopFilm(); closeMenu();
-    const leavingGift=current==='gift', leavingGalaxy=current==='galaxy';
-    if(leavingGift && name==='galaxy') {
-      const audio=$('#gift-frame').contentWindow?.GiftAudioControls;
-      wantsMusic=!!(audio?.playing&&!audio?.muted);
-    }
+    const leavingGift=current==='gift';
     if(leavingGift)$('#gift-frame').contentWindow?.GiftAudioControls?.stop();
     document.querySelectorAll('.screen.leaving').forEach(screen=>{screen.hidden=true;screen.classList.remove('leaving');screen.querySelector('iframe')?.removeAttribute('src');});
     if(options.record!==false) history.push(current);
@@ -81,17 +77,11 @@
     old.classList.remove('active'); old.classList.add('leaving'); old.inert=true; old.setAttribute('aria-hidden','true');
     const leavingFrame=old.querySelector('iframe');
     current=name; next.hidden=false; next.inert=false; next.removeAttribute('aria-hidden'); next.classList.add('active'); next.tabIndex=-1; next.focus({preventScroll:true});
-    if(name==='galaxy' || leavingGalaxy) {
-      music.pause();
-      music.src=name==='galaxy'?(config.galaxyMusic||config.giftMusic):config.music;
-      music.volume=Math.max(0,Math.min(1,Number(name==='galaxy'?(config.galaxyMusicVolume??config.giftMusicVolume):config.musicVolume)||0));
-      if(wantsMusic && name!=='gift' && name!=='welcome' && !document.hidden)playMusic();
-    }
-    else if(name==='gift')music.pause();
+    if(name==='gift')music.pause();
     else if(leavingGift && wantsMusic && name!=='welcome' && !document.hidden)playMusic();
     updateMusic();
     $('#experience-tools').hidden=name==='welcome'; $('#back-button').disabled=!history.length;
-    document.body.classList.toggle('night-mode',['flower','gift','galaxy'].includes(name));
+    document.body.classList.toggle('night-mode',['flower','gift'].includes(name));
     document.querySelectorAll('#scene-menu [data-go]').forEach(button=>{button.classList.toggle('current',button.dataset.go===name);if(button.dataset.go===name)button.setAttribute('aria-current','step');else button.removeAttribute('aria-current');});
     if(name==='welcome') { wantsMusic=false;music.pause(); }
     if(name==='classroom') setTimeout(()=>{if(current===name)next.classList.add('finished');},effects.reducedMotion()?0:8000);
@@ -100,20 +90,13 @@
     if(name==='gift') {
       $('#gift-loading').hidden=false;
       const source=new URL($('#gift-frame').dataset.src,location.href);
-      if(leavingGalaxy || new URLSearchParams(location.search).get('resume')==='finale')source.searchParams.set('resume','finale');
+      if(new URLSearchParams(location.search).get('resume')==='finale')source.searchParams.set('resume','finale');
       $('#gift-frame').src=source.href;
     }
-    if(name==='galaxy')$('#galaxy-frame').src=$('#galaxy-frame').dataset.src;
     transitionTimer=setTimeout(()=>{old.hidden=true;old.classList.remove('leaving');if(leavingFrame)leavingFrame.removeAttribute('src');},effects.reducedMotion()?0:850);
   }
   document.querySelectorAll('[data-go]').forEach(button=>button.addEventListener('click',()=>showScene(button.dataset.go)));
   window.addEventListener('message',event=>{
-    if(event.origin===location.origin && event.source===$('#gift-frame').contentWindow && event.data?.type==='teachers-day:open-galaxy' && current==='gift') {
-      showScene('galaxy');return;
-    }
-    if(event.origin===location.origin && event.source===$('#galaxy-frame').contentWindow && event.data?.type==='teachers-day:close-galaxy' && current==='galaxy') {
-      showScene(history.pop()||'gift',{record:false});return;
-    }
     if(event.origin===location.origin && event.source===$('#gift-frame').contentWindow && event.data?.type==='gift-audio-state'){
       if(current!=='gift'){$('#gift-frame').contentWindow?.GiftAudioControls?.stop();return;}
       music.pause(); updateMusic();

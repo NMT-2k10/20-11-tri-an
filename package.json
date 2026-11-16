@@ -6,6 +6,6 @@
   "scripts": {
     "start": "node server.mjs",
     "dev": "node server.mjs",
-    "check": "node --check app.js && node --check effects.js && node --check config.js && node --check server.mjs && node --check vendor/gift/letter-paragraphs.js && node --check vendor/gift/bridge.js && node --check vendor/gift/js/threejs.js && node --check vendor/bloom/bloom.js && node --check vendor/bloom/cycle.js && node --check vendor/bloom/show.js && node --check vendor/gift/finale-tribute.js && node --check vendor/gift/fireworks-render.js && node --check vendor/gift/fireworks-atmosphere.js && node --check vendor/galaxy/scene.js && node --check vendor/galaxy/cinematic.js && node --check vendor/galaxy/boot.js"
+    "check": "node --check app.js && node --check effects.js && node --check config.js && node --check server.mjs && node --check vendor/gift/letter-paragraphs.js && node --check vendor/gift/bridge.js && node --check vendor/gift/js/threejs.js && node --check vendor/bloom/bloom.js && node --check vendor/bloom/cycle.js && node --check vendor/bloom/show.js && node --check vendor/gift/finale-tribute.js && node --check vendor/gift/fireworks-render.js && node --check vendor/gift/fireworks-atmosphere.js"
   }
 }

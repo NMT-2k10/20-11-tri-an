@@ -15,7 +15,6 @@ Website tĩnh HTML/CSS/JavaScript, chạy được trên GitHub Pages. Không c�
 
 Tệp `.nojekyll` đã được thêm để GitHub phục vụ trực tiếp website tĩnh.
 
-File nhạc ngân hà `assets/music/galaxy.mp3` khoảng 28,8 MB: dùng Git hoặc GitHub Desktop để đẩy repository. File này vượt giới hạn 25 MiB khi tải bằng trình duyệt, nhưng nhỏ hơn giới hạn 100 MiB của Git.
 
 Ví dụ dùng Git trong PowerShell tại thư mục dự án, với repository GitHub mới tạo và còn trống:
 
@@ -49,14 +48,12 @@ Mở `http://localhost:2011`. Không cần chạy `npm install`. `server.mjs` v�
 - Sửa `config.js` để đổi lời chúc, người gửi, ảnh và nhạc.
 - `music` / `musicVolume`: nhạc mở đầu, hiện ở mức 50%.
 - `giftMusic` / `giftMusicVolume`: nhạc phần quà.
-- `galaxyMusic` / `galaxyMusicVolume`: nhạc thiên hà, hiện ở mức 55%.
-- `galaxy.title`, `galaxy.messages`, `galaxy.photos`: tiêu đề, lời nhắn và ảnh riêng của thiên hà. Nếu không khai báo `galaxy.photos`, màn này dùng mảng `photos` chung.
 - `assets/` và `vendor/` chứa tài nguyên cần để chạy web. Giữ nguyên cấu trúc các thư mục và các tệp giấy phép font/thư viện.
 
-Luồng chính: mở đầu → bảng phấn → hoa tri ân → thước phim → phần quà, thư và pháo hoa → bảng tri ân → thiên hà.
+Luồng chính: mở đầu → bảng phấn → hoa tri ân → thước phim → phần quà, thư và pháo hoa → bảng tri ân với pháo hoa tiếp tục bắn không giới hạn.
 
-Thư hiện từng từ theo mẫu Flower Garden. Thước phim tự chạy. Nút “Tiếp tục” ở bảng tri ân mở màn thiên hà; quay lại từ thiên hà sẽ về đúng bảng tri ân.
+Thư hiện từng từ theo mẫu Flower Garden. Thước phim tự chạy. Website kết thúc tại bảng tri ân; pháo hoa tiếp tục bắn cho đến khi rời cảnh hoặc đóng trang.
 
-Xem nhanh bằng `?scene=classroom`, `?scene=flower`, `?scene=memories`, `?scene=gift`, `?scene=galaxy`. `?scene=gift&resume=finale` mở thẳng bảng tri ân để xem thử.
+Xem nhanh bằng `?scene=classroom`, `?scene=flower`, `?scene=memories`, `?scene=gift`. `?scene=gift&resume=finale` mở thẳng bảng tri ân để xem thử.
 
-Nguồn tham khảo và ghi nhận tác giả nằm trong `vendor/README.md`, `vendor/galaxy/README.md` và các tệp giấy phép đi kèm.
+Nguồn tham khảo và ghi nhận tác giả nằm trong `vendor/README.md` và các tệp giấy phép đi kèm.

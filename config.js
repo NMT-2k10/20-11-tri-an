@@ -19,22 +19,10 @@ window.GIFT_CONFIG = {
   musicVolume: 0.5,
   giftMusic: 'vendor/gift/assets/music/gift.mp3',
   giftMusicVolume: 0.55,
-  galaxyMusic: 'assets/music/galaxy.mp3',
-  galaxyMusicVolume: 0.55,
   bouquetTitle: 'Một bó hoa, ngàn lời cảm ơn',
   bouquetMessage: 'Kính tặng thầy cô những đóa hoa tươi thắm nhất. Cảm ơn người đã lặng lẽ vun trồng những mùa hoa tri thức.',
   scratchMessage: 'Món quà lớn nhất chúng em muốn gửi đến thầy cô: lời hứa sẽ luôn cố gắng, sống tử tế và trưởng thành mỗi ngày.',
   finalMessage: 'Dẫu đi muôn phương, vẫn nhớ người dẫn lối.',
-  galaxy: {
-    title: 'Thầy cô · Người thắp sáng ước mơ',
-    messages: [
-      'Thầy cô là những vì sao dẫn lối chúng em.',
-      'Từ một trang vở nhỏ, mở ra cả bầu trời ước mơ.',
-      'Mỗi kỷ niệm dưới mái trường là một vì sao sáng.',
-      'Dẫu đi muôn phương, chúng em vẫn nhớ người dẫn lối.',
-      '20/11 · Ngàn lời tri ân gửi đến thầy cô.'
-    ]
-  },
   // Đổi thành true để thêm màn hình nhập mã như mẫu Lovegift.
   enablePasscode: false,
   passcode: '2011',
